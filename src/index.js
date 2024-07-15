@@ -1,5 +1,8 @@
-function hello() {
-  return 2;
+function capitalize(stringToBeCapitalized) {
+  return (
+    stringToBeCapitalized.charAt(0).toUpperCase() +
+    stringToBeCapitalized.slice(1)
+  );
 }
 
-export default hello;
+export default capitalize;

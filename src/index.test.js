@@ -1,8 +1,7 @@
-// eslint-disable-next-line import/extensions, import/no-named-as-default, import/no-named-as-default-member
-import hello from "./index.js";
+import capitalize from "./index.js";
 
-// eslint-disable-next-line no-undef
-test("says hello", () => {
-  // eslint-disable-next-line no-undef
-  expect(hello()).toBe(2);
+test("first letter is a capitalized letter", () => {
+  let aa = capitalize("heidi").charAt(0);
+  let bb = capitalize("heidi").charAt(0).toUpperCase();
+  expect(aa).toBe(bb);
 });
