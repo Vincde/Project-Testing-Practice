@@ -1,1 +1,5 @@
-import "./style.css";
+function hello() {
+  return 2;
+}
+
+export default hello;
