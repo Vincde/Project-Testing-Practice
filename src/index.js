@@ -13,4 +13,14 @@ function capitalize(stringToBeCapitalized) {
   );
 }
 
+function reverseString(stringToBeReversed) {
+  let reversedString = "";
+  for (let i = stringToBeReversed.length - 1; i >= 0; i--) {
+    reversedString = reversedString.concat(stringToBeReversed.charAt(i));
+  }
+
+  return reversedString;
+}
+
 export default capitalize;
+export { reverseString };
