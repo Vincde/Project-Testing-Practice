@@ -1,4 +1,8 @@
-import capitalize, { reverseString, calculator } from "./index.js";
+import capitalize, {
+  reverseString,
+  calculator,
+  caesarCipher,
+} from "./index.js";
 
 test("first letter is a capitalized letter", () => {
   let charToControl = capitalize("teidi");
@@ -68,4 +72,15 @@ test("divide 2 numbers", () => {
 test("verify error inserting incorrect value", () => {
   let newCalculator = calculator();
   expect(newCalculator.divide(2, "x")).toMatch("error");
+});
+
+test("caesar cypher works as intended", () => {
+  let newString = caesarCipher("Io sono vincenzo", 3);
+  expect(newString).toBe("Lr vrqr ylqfhqcr");
+});
+
+test("caesar cypher works as intended", () => {
+  let newString = caesarCipher("JJASDFKLRJIDNVALDJNRLJNDFLK", 3);
+
+  expect(newString).toBe("MMDVGINOUMLGQYDOGMQUOMQGION");
 });

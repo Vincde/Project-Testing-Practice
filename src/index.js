@@ -62,5 +62,43 @@ function calculator() {
   return { add, subtract, multiply, divide };
 }
 
+function caesarCipher(plainText, shiftFactor) {
+  shiftFactor = parseInt(shiftFactor);
+  let finalArr = plainText.split("");
+  for (let i = 0; i < finalArr.length; i++) {
+    if (finalArr[i] === " ") continue;
+
+    let oneChar = plainText.charCodeAt(i);
+    oneChar += shiftFactor;
+
+    if (oneChar < 65) {
+      oneChar = 65 - oneChar;
+      oneChar = 91 - oneChar;
+    } else if (
+      oneChar > 90 &&
+      oneChar < 97 &&
+      String.fromCharCode(oneChar - shiftFactor) <= 90
+    ) {
+      oneChar = oneChar - 90;
+      oneChar = oneChar + 64;
+    } else if (
+      oneChar < 97 &&
+      oneChar > 90 &&
+      String.fromCharCode(oneChar - shiftFactor) >= 97
+    ) {
+      oneChar = 97 - oneChar;
+      oneChar = 123 - oneChar;
+    } else if (oneChar > 122) {
+      oneChar = oneChar - 122;
+      oneChar = oneChar + 96;
+    }
+
+    finalArr[i] = String.fromCharCode(oneChar);
+  }
+
+  finalArr = finalArr.join("");
+  return finalArr;
+}
+
 export default capitalize;
-export { reverseString, calculator };
+export { reverseString, calculator, caesarCipher };
