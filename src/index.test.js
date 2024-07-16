@@ -1,4 +1,4 @@
-import capitalize, { reverseString } from "./index.js";
+import capitalize, { reverseString, calculator } from "./index.js";
 
 test("first letter is a capitalized letter", () => {
   let charToControl = capitalize("teidi");
@@ -43,4 +43,29 @@ test("empty string", () => {
 test("only space", () => {
   let revString = reverseString("  ");
   expect(revString).toBe("  ");
+});
+
+test("add 2 numbers", () => {
+  let newCalculator = calculator();
+  expect(newCalculator.add(2, 3)).toBe(5);
+});
+
+test("subtract 2 numbers", () => {
+  let newCalculator = calculator();
+  expect(newCalculator.subtract(13.4, 6.2)).toBe(7.2);
+});
+
+test("multiply 2 numbers", () => {
+  let newCalculator = calculator();
+  expect(newCalculator.multiply(2.2, 3)).toBe(6.6);
+});
+
+test("divide 2 numbers", () => {
+  let newCalculator = calculator();
+  expect(newCalculator.divide(2.3, 2)).toBe(1.15);
+});
+
+test("verify error inserting incorrect value", () => {
+  let newCalculator = calculator();
+  expect(newCalculator.divide(2, "x")).toMatch("error");
 });
