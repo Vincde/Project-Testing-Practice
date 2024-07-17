@@ -64,39 +64,40 @@ function calculator() {
 }
 
 function caesarCipher(plainText, shiftFactor) {
+  // eslint-disable-next-line no-useless-escape
+  const specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
   // eslint-disable-next-line no-param-reassign
   shiftFactor = parseInt(shiftFactor, 10);
   let finalArr = plainText.split("");
   for (let i = 0; i < finalArr.length; i += 1) {
-    // eslint-disable-next-line no-continue
-    if (finalArr[i] === " ") continue;
+    if (!specialChars.test(finalArr[i])) {
+      let oneChar = plainText.charCodeAt(i);
+      oneChar += shiftFactor;
 
-    let oneChar = plainText.charCodeAt(i);
-    oneChar += shiftFactor;
+      if (oneChar < 65) {
+        oneChar = 65 - oneChar;
+        oneChar = 91 - oneChar;
+      } else if (
+        oneChar > 90 &&
+        oneChar < 97 &&
+        String.fromCharCode(oneChar - shiftFactor) <= 90
+      ) {
+        oneChar -= 90;
+        oneChar += 64;
+      } else if (
+        oneChar < 97 &&
+        oneChar > 90 &&
+        String.fromCharCode(oneChar - shiftFactor) >= 97
+      ) {
+        oneChar = 97 - oneChar;
+        oneChar = 123 - oneChar;
+      } else if (oneChar > 122) {
+        oneChar -= 122;
+        oneChar += 96;
+      }
 
-    if (oneChar < 65) {
-      oneChar = 65 - oneChar;
-      oneChar = 91 - oneChar;
-    } else if (
-      oneChar > 90 &&
-      oneChar < 97 &&
-      String.fromCharCode(oneChar - shiftFactor) <= 90
-    ) {
-      oneChar -= 90;
-      oneChar += 64;
-    } else if (
-      oneChar < 97 &&
-      oneChar > 90 &&
-      String.fromCharCode(oneChar - shiftFactor) >= 97
-    ) {
-      oneChar = 97 - oneChar;
-      oneChar = 123 - oneChar;
-    } else if (oneChar > 122) {
-      oneChar -= 122;
-      oneChar += 96;
+      finalArr[i] = String.fromCharCode(oneChar);
     }
-
-    finalArr[i] = String.fromCharCode(oneChar);
   }
 
   finalArr = finalArr.join("");

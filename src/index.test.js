@@ -75,12 +75,18 @@ test("verify error inserting incorrect value", () => {
 });
 
 test("caesar cypher works as intended", () => {
-  let newString = caesarCipher("Io sono vincenzo", 3);
-  expect(newString).toBe("Lr vrqr ylqfhqcr");
+  let newString = caesarCipher("xyz", 3);
+  expect(newString).toBe("abc");
 });
 
-test("caesar cypher works as intended", () => {
-  let newString = caesarCipher("JJASDFKLRJIDNVALDJNRLJNDFLK", 3);
+test("case Preservation", () => {
+  let newString = caesarCipher("HeLLo", 3);
 
-  expect(newString).toBe("MMDVGINOUMLGQYDOGMQUOMQGION");
+  expect(newString).toBe("KhOOr");
+});
+
+test("punctuation ignored", () => {
+  let newString = caesarCipher("Hello, World!", 3);
+
+  expect(newString).toBe("Khoor, Zruog!");
 });
