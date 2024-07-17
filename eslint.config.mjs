@@ -19,8 +19,6 @@ export default [
   ...compat.extends("airbnb-base"),
   eslintConfigPrettier,
   {
-    env: {
-      "jest/globals": true,
-    },
+    ignores: ["src/index.test.js"],
   },
 ];

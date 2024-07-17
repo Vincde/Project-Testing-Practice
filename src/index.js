@@ -1,8 +1,9 @@
 function capitalize(stringToBeCapitalized) {
   let i = 0;
-  let specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
+  // eslint-disable-next-line no-useless-escape
+  const specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
   while (specialChars.test(stringToBeCapitalized.charAt(i)) === true) {
-    i++;
+    i += 1;
     if (i >= stringToBeCapitalized.length) {
       return "No valid characters found";
     }
@@ -15,7 +16,7 @@ function capitalize(stringToBeCapitalized) {
 
 function reverseString(stringToBeReversed) {
   let reversedString = "";
-  for (let i = stringToBeReversed.length - 1; i >= 0; i--) {
+  for (let i = stringToBeReversed.length - 1; i >= 0; i -= 1) {
     reversedString = reversedString.concat(stringToBeReversed.charAt(i));
   }
 
@@ -63,9 +64,11 @@ function calculator() {
 }
 
 function caesarCipher(plainText, shiftFactor) {
-  shiftFactor = parseInt(shiftFactor);
+  // eslint-disable-next-line no-param-reassign
+  shiftFactor = parseInt(shiftFactor, 10);
   let finalArr = plainText.split("");
-  for (let i = 0; i < finalArr.length; i++) {
+  for (let i = 0; i < finalArr.length; i += 1) {
+    // eslint-disable-next-line no-continue
     if (finalArr[i] === " ") continue;
 
     let oneChar = plainText.charCodeAt(i);
@@ -79,8 +82,8 @@ function caesarCipher(plainText, shiftFactor) {
       oneChar < 97 &&
       String.fromCharCode(oneChar - shiftFactor) <= 90
     ) {
-      oneChar = oneChar - 90;
-      oneChar = oneChar + 64;
+      oneChar -= 90;
+      oneChar += 64;
     } else if (
       oneChar < 97 &&
       oneChar > 90 &&
@@ -89,8 +92,8 @@ function caesarCipher(plainText, shiftFactor) {
       oneChar = 97 - oneChar;
       oneChar = 123 - oneChar;
     } else if (oneChar > 122) {
-      oneChar = oneChar - 122;
-      oneChar = oneChar + 96;
+      oneChar -= 122;
+      oneChar += 96;
     }
 
     finalArr[i] = String.fromCharCode(oneChar);
