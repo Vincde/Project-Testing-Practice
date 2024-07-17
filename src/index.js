@@ -66,13 +66,12 @@ function calculator() {
 function caesarCipher(plainText, shiftFactor) {
   // eslint-disable-next-line no-useless-escape
   const specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
-  // eslint-disable-next-line no-param-reassign
-  shiftFactor = parseInt(shiftFactor, 10);
+  const savedShiftFactor = parseInt(shiftFactor, 10);
   let finalArr = plainText.split("");
   for (let i = 0; i < finalArr.length; i += 1) {
     if (!specialChars.test(finalArr[i])) {
       let oneChar = plainText.charCodeAt(i);
-      oneChar += shiftFactor;
+      oneChar += savedShiftFactor;
 
       if (oneChar < 65) {
         oneChar = 65 - oneChar;
@@ -80,14 +79,14 @@ function caesarCipher(plainText, shiftFactor) {
       } else if (
         oneChar > 90 &&
         oneChar < 97 &&
-        String.fromCharCode(oneChar - shiftFactor) <= 90
+        String.fromCharCode(oneChar - savedShiftFactor) <= 90
       ) {
         oneChar -= 90;
         oneChar += 64;
       } else if (
         oneChar < 97 &&
         oneChar > 90 &&
-        String.fromCharCode(oneChar - shiftFactor) >= 97
+        String.fromCharCode(oneChar - savedShiftFactor) >= 97
       ) {
         oneChar = 97 - oneChar;
         oneChar = 123 - oneChar;
