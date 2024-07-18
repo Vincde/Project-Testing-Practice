@@ -2,6 +2,7 @@ import capitalize, {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } from "./index.js";
 
 test("first letter is a capitalized letter", () => {
@@ -89,4 +90,19 @@ test("punctuation ignored", () => {
   let newString = caesarCipher("Hello, World!", 3);
 
   expect(newString).toBe("Khoor, Zruog!");
+});
+
+test("object works as expected", () => {
+  let newObject = analyzeArray([1, 4, 5, 2, 43]);
+  expect(newObject).toEqual({
+    averageNum: 4,
+    minNum: 1,
+    maxNum: 43,
+    lengthNum: 5,
+  });
+});
+
+test("no object inserted", () => {
+  let newObject = analyzeArray(45);
+  expect(newObject).toBe("error");
 });

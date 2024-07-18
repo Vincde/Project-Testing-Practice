@@ -103,5 +103,47 @@ function caesarCipher(plainText, shiftFactor) {
   return finalArr;
 }
 
+const mergeSort = (arr) => {
+  if (arr.length < 2) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const l = mergeSort(arr.slice(0, mid));
+  const r = mergeSort(arr.slice(mid, arr.length));
+  return Array.from({ length: l.length + r.length }, () => {
+    if (!l.length) return r.shift();
+    if (!r.length) return l.shift();
+    return l[0] > r[0] ? r.shift() : l.shift();
+  });
+};
+
+function average(array) {
+  const index = Math.floor(array.length / 2);
+
+  return array[index];
+}
+
+function min(array) {
+  return array[0];
+}
+
+function max(array) {
+  return array[array.length - 1];
+}
+
+function length(array) {
+  return array.length;
+}
+
+function analyzeArray(array) {
+  if (!Array.isArray(array)) return "error";
+  const sortedArr = mergeSort(array);
+
+  const averageNum = average(sortedArr);
+  const minNum = min(sortedArr);
+  const maxNum = max(sortedArr);
+  const lengthNum = length(sortedArr);
+
+  return { averageNum, minNum, maxNum, lengthNum };
+}
+
 export default capitalize;
-export { reverseString, calculator, caesarCipher };
+export { reverseString, calculator, caesarCipher, analyzeArray };
